@@ -1,0 +1,54 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2017-03-22 20:56+0000\n"
+"Language: nl-NL\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"PO-Revision-Date: 2017-03-22 20:57+0000\n"
+"X-Generator: Loco - https://localise.biz/\n"
+"Project-Id-Version: Ninja Forms - Postcode.nl API\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: holtesdesign <info@holtesdesign.nl>\n"
+"Language-Team: Dutch\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit"
+
+#. Name of the plugin
+msgid "Ninja Forms - Postcode.nl API"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"This plug-in combines Ninja Forms with Postcode.nl API to auto-fill and "
+"validate address data."
+msgstr ""
+"Deze plug-in combineert Ninja Forms met de Postcode.nl API om automatisch "
+"adressen aan te vullen en te valideren."
+
+#. URI of the plugin
+msgid "https://www.holtesdesign.nl/nf-postcode-api-uri/"
+msgstr ""
+
+#. Author of the plugin
+msgid "Holtes Design"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.holtesdesign.nl"
+msgstr ""
+
+#: includes/class-nf-postcode-api-loader.php:98
+msgid "Combination does not exist."
+msgstr "De opgegeven postcode is niet bekend met huisnummer."
+
+#: includes/class-nf-postcode-api-loader.php:99
+msgid "Specified postcode is too short."
+msgstr "De ingevulde postcode is te kort."
+
+#: includes/class-nf-postcode-api-loader.php:100
+msgid "Housenumber must contain numbers only."
+msgstr "Het huisnummer dient alleen nummers te bevatten."
+
+#: includes/class-nf-postcode-api-loader.php:101
+msgid "Postcode does not use format `1234AB`."
+msgstr "Postcode is niet in het formaat '1234AB'."
