@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Ninja Forms - Postcode.nl API
  * Plugin URI:        https://www.holtesdesign.nl/nf-postcode-api-uri/
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       This plug-in combines Ninja Forms with Postcode.nl API to auto-fill and validate address data.
  * Version:           1.0.0
  * Author:            Holtes Design
  * Author URI:        https://www.holtesdesign.nl
