@@ -23,7 +23,10 @@
  */
 class NF_Postcode_Api_Loader {
 
-	/**
+
+
+
+    /**
 	 * The array of actions registered with WordPress.
 	 *
 	 * @since    1.0.0
@@ -51,9 +54,75 @@ class NF_Postcode_Api_Loader {
 		$this->actions = array();
 		$this->filters = array();
 
+        // Testje
+        add_action( 'wp_ajax_nf_postcode_api_request', array($this, 'request_address' ));
+        add_action( 'wp_ajax_nopriv_nf_postcode_api_request', array($this, 'request_address' ));
+
 	}
 
-	/**
+
+
+    /**
+     * Run the core of the plugin. Swekjes.
+     *
+     */
+
+    public function request_address () {
+
+        //if ( !check_ajax_referer( 'nf_postcode_api', 'security', false ) ) {
+        //	die();
+        //}
+
+        $key = "huB90MvEPtQPFiviVMgaEAV628QwYOpDTGZLTSg4Dqm";
+        $secret = "meJKlgGH8YilTiAqQh5ShtfRZNofjVUAgRwCCk70jI4DNpyBli";
+
+        extract($_POST);
+
+        // Clean postcode to 9999XX format
+        $postcode = preg_replace('/[^a-zA-Z0-9]/', '', $postcode);
+
+        $url = 'https://api.postcode.nl/rest/addresses/' . urlencode($postcode). '/'. urlencode($house_number) . '/'. urlencode($house_number_suffix);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        curl_setopt($ch, CURLOPT_USERPWD, $key .':'. $secret);
+        $jsonResponse = curl_exec($ch);
+        $curlError = curl_error($ch);
+        curl_close($ch);
+
+        // Translate errors
+        $errors = array(
+            'Combination does not exist.'            => __('Combination does not exist.', 'nf_postcode_api'),
+            'Specified postcode is too short.'       => __('Specified postcode is too short.', 'nf_postcode_api'),
+            'Housenumber must contain numbers only.' => __('Housenumber must contain numbers only.', 'nf_postcode_api'),
+            'Postcode does not use format `1234AB`.' => __('Postcode does not use format `1234AB`.', 'nf_postcode_api'),
+        );
+
+        foreach ($errors as $string => $translation) {
+            $jsonResponse = str_replace($string, $translation, $jsonResponse);
+        }
+
+        echo $jsonResponse;
+
+        die();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
 	 * Add a new action to the collection to be registered with WordPress.
 	 *
 	 * @since    1.0.0
