@@ -95,10 +95,10 @@ class NF_Postcode_Api_Loader {
 
         // Translate errors
         $errors = array(
-            'Combination does not exist.'            => __('Combination does not exist.', 'nf_postcode_api'),
-            'Specified postcode is too short.'       => __('Specified postcode is too short.', 'nf_postcode_api'),
-            'Housenumber must contain numbers only.' => __('Housenumber must contain numbers only.', 'nf_postcode_api'),
-            'Postcode does not use format `1234AB`.' => __('Postcode does not use format `1234AB`.', 'nf_postcode_api'),
+            'Combination does not exist.'            => __('Combination does not exist.', 'nf-postcode-api'),
+            'Specified postcode is too short.'       => __('Specified postcode is too short.', 'nf-postcode-api'),
+            'Housenumber must contain numbers only.' => __('Housenumber must contain numbers only.', 'nf-postcode-api'),
+            'Postcode does not use format `1234AB`.' => __('Postcode does not use format `1234AB`.', 'nf-postcode-api'),
         );
 
         foreach ($errors as $string => $translation) {
