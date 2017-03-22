@@ -3,7 +3,7 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       http://example.com
+ * @link       https://www.holtesdesign.nl
  * @since      1.0.0
  *
  * @package    NF_Postcode_Api
@@ -18,7 +18,7 @@
  *
  * @package    NF_Postcode_Api
  * @subpackage NF_Postcode_Api/public
- * @author     Your Name <email@example.com>
+ * @author     Holtes Design <email@example.com>
  */
 class NF_Postcode_Api_Public {
 

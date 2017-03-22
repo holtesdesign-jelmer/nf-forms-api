@@ -8,17 +8,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://example.com
+ * @link              https://www.holtesdesign.nl
  * @since             1.0.0
  * @package           NF_Postcode_Api
  *
  * @wordpress-plugin
  * Plugin Name:       Ninja Forms - Postcode.nl API
- * Plugin URI:        http://example.com/nf-postcode-api-uri/
+ * Plugin URI:        https://www.holtesdesign.nl/nf-postcode-api-uri/
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0
  * Author:            Holtes Design
- * Author URI:        http://example.com/
+ * Author URI:        https://www.holtesdesign.nl
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       nf-postcode-api

@@ -3,7 +3,7 @@
 /**
  * Fired during plugin deactivation
  *
- * @link       http://example.com
+ * @link       https://www.holtesdesign.nl
  * @since      1.0.0
  *
  * @package    NF_Postcode_Api
@@ -18,7 +18,7 @@
  * @since      1.0.0
  * @package    NF_Postcode_Api
  * @subpackage NF_Postcode_Api/includes
- * @author     Your Name <email@example.com>
+ * @author     Holtes Design <email@example.com>
  */
 class NF_Postcode_Api_Deactivator {
 
