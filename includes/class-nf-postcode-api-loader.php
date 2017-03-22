@@ -58,6 +58,7 @@ class NF_Postcode_Api_Loader {
         add_action( 'wp_ajax_nf_postcode_api_request', array($this, 'request_address' ));
         add_action( 'wp_ajax_nopriv_nf_postcode_api_request', array($this, 'request_address' ));
 
+
 	}
 
 

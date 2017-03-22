@@ -19,7 +19,6 @@
     function getPostcode() {
 
         // Init vars
-        var admin_url = "https://postcode.accp.holtesdesign.nl/wp-admin/admin-ajax.php";
         var postcode = $('.api-postcode').val();
         var house_number = $('.api-house_number').val();
         var house_number_suffix = "";
@@ -41,7 +40,7 @@
         // Call Postcode API
         xhr = $.ajax({
             type:		'POST',
-            url:		admin_url+'?action=nf_postcode_api_request',
+            url:		ajaxurl+'?action=nf_postcode_api_request',
             data:		data,
             dataType:   'json',
             success:	function( data ) {

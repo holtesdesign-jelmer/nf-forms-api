@@ -96,7 +96,10 @@ class NF_Postcode_Api_Public {
 		 * class.
 		 */
 
+        wp_localize_script( $this->nf_postcode_api, 'wp_ajax_url', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+        wp_enqueue_script( $this->nf_postcode_api );
 		wp_enqueue_script( $this->nf_postcode_api, plugin_dir_url( __FILE__ ) . 'js/nf-postcode-api-public.js', array( 'jquery' ), $this->version, false );
+
 
 	}
 
