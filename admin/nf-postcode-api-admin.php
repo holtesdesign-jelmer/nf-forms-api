@@ -49,10 +49,7 @@ function check_nf_key( $setting )
             $jsonResponse = str_replace($string, $translation, $jsonResponse);
         }
 
-        //echo $jsonResponse;
-
         $ar          = json_decode($jsonResponse, true);
-
 
             if($ar['exceptionId'] == "API-Gegevens correct, verbinding geslaagd."){
                 add_action( 'admin_notices', 'nf_admin_notice_succes' );

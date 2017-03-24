@@ -2,15 +2,12 @@
 
     var formExists = setInterval(function() {
         if ($(".nf-form-cont").length) {
-            console.log("Listening for length");
 
             // Set your event listeners here, example:
             $(".api-postcode, .api-house_number").on('focusout',getPostcodeAndNumber);
             clearInterval(formExists);
         }
     }, 100); // check every 100ms
-
-
 
     function getPostcodeAndNumber() {
 
@@ -26,13 +23,10 @@
         var house_number = $('.api-house_number').val();
         var house_number_suffix = "";
 
-        // Error notofications (todo)
-
         if ( $('.nf-form-cont').parent().find( '.postcode-api-error' ).length < 1 ) {
             $( '.api-postcode' ).closest( '.nf-field-container' ).before( '<div class="postcode-api-error" style="color: red;"></div>' );
         }
 
-        // Init array for data sync (todo nonce + suffix)
         var data = {
             security:            nf_ajax_url.nonce,
             postcode:            postcode,

@@ -24,8 +24,6 @@
 class NF_Postcode_Api_Loader {
 
 
-
-
     /**
 	 * The array of actions registered with WordPress.
 	 *
@@ -57,8 +55,6 @@ class NF_Postcode_Api_Loader {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/nf-postcode-api-public.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/nf-postcode-api-admin.php';
 
-
-        // Register AJAX function hook
         add_action( 'wp_ajax_nf_postcode_api_request', array($this, 'request_address' ));
         add_action( 'wp_ajax_nopriv_nf_postcode_api_request', array($this, 'request_address' ));
 
@@ -67,18 +63,13 @@ class NF_Postcode_Api_Loader {
 
     public function request_address () {
 		
-		// Check nonce
         if ( !check_ajax_referer( 'nf_postcode_api', 'security', false ) ) {
         	die();
         }
 		
-		// Define Postcode.nl API credentials
         $key = Ninja_Forms()->get_setting( 'nf_api_key' );
         $secret = Ninja_Forms()->get_setting( 'nf_api_secret' );
 
-
-
-        // Extract POST data from Ninja Forms fields, to validate address data
         extract($_POST);
                 
         // Clean postcode to 9999XX format
@@ -111,18 +102,6 @@ class NF_Postcode_Api_Loader {
 
         die();
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**
