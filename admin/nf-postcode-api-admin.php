@@ -1,54 +1,135 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: nilsringersma
- * Date: 23-03-17
- * Time: 10:12
+ * Call the Ninja Form filters.
+ *
+ * @since    1.0.0
  */
+add_filter( 'ninja_forms_plugin_settings_groups', 'nf_settings_groups', 10, 1 );
+add_filter( 'ninja_forms_plugin_settings', 'plugin_settings', 10, 1 );
+add_filter( 'ninja_forms_check_setting_nf_api_key',  'check_nf_key', 10, 1 );
+add_filter( 'ninja_forms_check_setting_nf_api_secret',  'check_nf_secret', 10, 1 );
+add_filter( 'ninja_forms_check_setting_nf_webreact_license',  'check_nf_license', 10, 1 );
 
-add_action( 'admin_init', 'nf_plugin_settings' );
-add_action( 'admin_menu', 'my_admin_menu' );
 
-function nf_plugin_settings(){
-    register_setting( 'nf-plugin-settings-group', 'nf_api_key' );
-    register_setting( 'nf-plugin-settings-group', 'nf_api_secret' );
-    register_setting( 'nf-plugin-settings-group', 'nf_webreact_license' );
+/**
+ * Check the API-key for correctness.
+ *
+ * @since    1.0.0
+ */
+function check_nf_key( $setting )
+{
+    $key = Ninja_Forms()->get_setting( 'nf_api_key' );
+    $secret = Ninja_Forms()->get_setting( 'nf_api_secret' );
+    // Check for errors...
+    if (!empty($key) && !empty($secret)) {
+
+        $url = 'https://api.postcode.nl/rest/addresses/';
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        curl_setopt($ch, CURLOPT_USERPWD, $key .':'. $secret);
+        $jsonResponse = curl_exec($ch);
+        $curlError = curl_error($ch);
+        curl_close($ch);
+
+        // Translate errors
+        $errors = array(
+            'Combination does not exist.'            => __('Combination does not exist.', 'nf-postcode-api'),
+            'Specified postcode is too short.'       => __('Specified postcode is too short.', 'nf-postcode-api'),
+            'Housenumber must contain numbers only.' => __('Housenumber must contain numbers only.', 'nf-postcode-api'),
+            'Postcode does not use format `1234AB`.' => __('Postcode does not use format `1234AB`.', 'nf-postcode-api'),
+            'PostcodeNl_Controller_Plugin_HttpBasicAuthentication_NotAuthorizedException' => __('API-Gegevens incorrect, verbinding mislukt.', 'nf-postcode-api'),
+            'PostcodeNl_Controller_Address_PostcodeTooShortException' => __('API-Gegevens correct, verbinding geslaagd.', 'nf-postcode-api'),
+        );
+
+        foreach ($errors as $string => $translation) {
+            $jsonResponse = str_replace($string, $translation, $jsonResponse);
+        }
+
+        //echo $jsonResponse;
+
+        $ar          = json_decode($jsonResponse, true);
+
+
+            if($ar['exceptionId'] == "API-Gegevens correct, verbinding geslaagd."){
+                add_action( 'admin_notices', 'nf_admin_notice_succes' );
+            }
+            elseif ($ar['exceptionId'] == "API-Gegevens incorrect, verbinding mislukt."){
+                add_action( 'admin_notices', 'nf_admin_notice_error' );
+            }
+
+    }
+    return $setting;
 }
 
-function my_admin_menu() {
+/**
+ * Check the API-secret for correctness.
+ *
+ * @since    1.0.0
+ */
+function check_nf_secret( $setting )
+{
+    // Check for errors...
 
-    // Add top level Page.
-    add_menu_page( 'Postcode.nl', 'Postcode.nl', 'manage_options', 'nf-postcode-api/postcode_settings.php', 'postcode_menu_init', 'dashicons-tickets', 6  );
-
+    return $setting;
 }
 
-function postcode_menu_init() {
-    require_once plugin_dir_path( __FILE__ ). 'partials/nf-postcode-setting-page.php';
+/**
+ * Check the Webreact License key for correctness.
+ *
+ * @since    1.0.0
+ */
+function check_nf_license( $setting )
+{
+    // Check for errors...
+
+    return $setting;
 }
 
+/**
+ * Init the settings in Ninja Forms backend.
+ *
+ * @since    1.0.0
+ */
+function plugin_settings( $settings )
+{
+    $settings[ 'nf-postcode' ] = array(
+        'nf_api_key' => array(
+            'id'    => 'nf_api_key',
+            'type'  => 'textbox',
+            'label'  => __( 'Postcode.nl API-Key', 'ninja-forms-example' ),
+            'desc'  => __( 'This is the Postcode.nl API-Key.', 'ninja-forms-example' ),
+        ),
+        'nf_api_secret' => array(
+            'id'    => 'nf_api_secret',
+            'type'  => 'textbox',
+            'label'  => __( 'Postcode.nl API-Secret', 'ninja-forms-example' ),
+            'desc'  => __( 'This is the Postcode.nl API-Secret.', 'ninja-forms-example' ),
+        ),
+        'nf_webreact_license' => array(
+            'id'    => 'nf_webreact_license',
+            'type'  => 'textbox',
+            'label'  => __( 'Webreact License', 'ninja-forms-example' ),
+            'desc'  => __( 'This is the Webreact License-ID.', 'ninja-forms-example' ),
+        ),
+    );
+    return $settings;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	 function load_admin_page_content() {
-	    require_once plugin_dir_path( __FILE__ ). 'partials/nf-postcode-api-admin-display.php';
-	}
+/**
+ * Init the settings field in Ninja forms backend..
+ *
+ * @since    1.0.0
+ */
+function nf_settings_groups( $groups )
+{
+    $groups[ 'nf-postcode' ] = array(
+        'id' => 'nf-postcode',
+        'label' => __( 'Postcode.nl API Connector', 'ninja-forms-example' ),
+    );
+    return $groups;
+}
 

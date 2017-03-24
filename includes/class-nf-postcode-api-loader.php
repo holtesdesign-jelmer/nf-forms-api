@@ -73,10 +73,12 @@ class NF_Postcode_Api_Loader {
         }
 		
 		// Define Postcode.nl API credentials
-        $key = esc_attr( get_option('nf_api_key') );
-        $secret = esc_attr( get_option('nf_api_secret') );
+        $key = Ninja_Forms()->get_setting( 'nf_api_key' );
+        $secret = Ninja_Forms()->get_setting( 'nf_api_secret' );
 
-		// Extract POST data from Ninja Forms fields, to validate address data
+
+
+        // Extract POST data from Ninja Forms fields, to validate address data
         extract($_POST);
                 
         // Clean postcode to 9999XX format

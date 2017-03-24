@@ -53,35 +53,6 @@ class NF_Postcode_Api_Admin {
 		$this->version = $version;
 	
 	}
-	
-//	// Create the Plugin Name menu page with add_menu_page();
-//	public function add_nf_submenu_page() {
-//
-//	    add_submenu_page(
-//		    'ninja-forms',
-//		    __( 'Ninja Forms - Postcode.nl API', 'nf-postcode-api' ),
-//		    __( 'Postcode.nl', 'nf-postcode-api' ),
-//		    'manage_options',
-//		    'nf-postcode-api',
-//		    'load_admin_page_content'
-//	    );
-//
-//		add_options_page(
-//            'Settings Admin',
-//            'My Settings',
-//            'manage_options',
-//            'my-setting-admin',
-//            array( $this, 'load_admin_page_content' )
-//        );
-//
-//	}
-//
-//	// Load the plugin admin page partial.
-//	public function load_admin_page_content() {
-//	    require_once plugin_dir_path( __FILE__ ). 'partials/nf-postcode-api-admin-display.php';
-//	}
-	
-	
 
 	/**
 	 * Register the stylesheets for the admin area.
