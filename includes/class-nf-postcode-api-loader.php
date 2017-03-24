@@ -55,8 +55,10 @@ class NF_Postcode_Api_Loader {
 		$this->filters = array();
 
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/nf-postcode-api-public.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/nf-postcode-api-admin.php';
 
-		// Register AJAX function hook
+
+        // Register AJAX function hook
         add_action( 'wp_ajax_nf_postcode_api_request', array($this, 'request_address' ));
         add_action( 'wp_ajax_nopriv_nf_postcode_api_request', array($this, 'request_address' ));
 
@@ -71,8 +73,8 @@ class NF_Postcode_Api_Loader {
         }
 		
 		// Define Postcode.nl API credentials
-        $key = "huB90MvEPtQPFiviVMgaEAV628QwYOpDTGZLTSg4Dqm";
-        $secret = "meJKlgGH8YilTiAqQh5ShtfRZNofjVUAgRwCCk70jI4DNpyBli";
+        $key = esc_attr( get_option('nf_api_key') );
+        $secret = esc_attr( get_option('nf_api_secret') );
 
 		// Extract POST data from Ninja Forms fields, to validate address data
         extract($_POST);

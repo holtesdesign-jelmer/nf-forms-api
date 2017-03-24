@@ -155,7 +155,7 @@ class NF_Postcode_Api {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		
 		// Hooks into admin_menu hook to add custom page
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_nf_submenu_page' );
+		//$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_nf_submenu_page' );
 
 	}
 

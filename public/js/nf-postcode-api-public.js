@@ -5,9 +5,6 @@
             console.log("Listening for length");
 
             // Set your event listeners here, example:
-            //$(".api-postcode, .api-house_number").on('focusout', console.log("SWEK!"));
-            
-
             $(".api-postcode, .api-house_number").on('focusout',getPostcodeAndNumber);
             clearInterval(formExists);
         }
@@ -16,11 +13,8 @@
 
 
     function getPostcodeAndNumber() {
-        console.log("Called!");
-
 
         if ($('.api-postcode').val() != '' && $('.api-house_number').val() != '') {
-            console.log("Calling getPostcode();");
             getPostcode();
         }
     }
@@ -55,7 +49,7 @@
             success:	function( data ) {
                 if (!data) {
                     return;  // nonce check failed
-                    console.log('test');
+                    console.log('nonce check failed');
                 }
 
                 // Debugging
