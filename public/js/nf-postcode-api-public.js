@@ -1,17 +1,26 @@
 (function( $ ) {
 
-
     var formExists = setInterval(function() {
         if ($(".nf-form-cont").length) {
+            console.log("Listening for length");
+
             // Set your event listeners here, example:
+            //$(".api-postcode, .api-house_number").on('focusout', console.log("SWEK!"));
+            
+
             $(".api-postcode, .api-house_number").on('focusout',getPostcodeAndNumber);
             clearInterval(formExists);
         }
     }, 100); // check every 100ms
 
+
+
     function getPostcodeAndNumber() {
+        console.log("Called!");
+
 
         if ($('.api-postcode').val() != '' && $('.api-house_number').val() != '') {
+            console.log("Calling getPostcode();");
             getPostcode();
         }
     }
@@ -31,7 +40,7 @@
 
         // Init array for data sync (todo nonce + suffix)
         var data = {
-            //security:            wpo_wcnlpc.nonce,
+            security:            nf_ajax_url.nonce,
             postcode:            postcode,
             house_number:        house_number,
             house_number_suffix: house_number_suffix,
@@ -40,7 +49,7 @@
         // Call Postcode API
         xhr = $.ajax({
             type:		'POST',
-            url:		ajaxurl+'?action=nf_postcode_api_request',
+            url:		nf_ajax_url.ajaxurl+'?action=nf_postcode_api_request',
             data:		data,
             dataType:   'json',
             success:	function( data ) {

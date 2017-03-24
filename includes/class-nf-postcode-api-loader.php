@@ -54,35 +54,33 @@ class NF_Postcode_Api_Loader {
 		$this->actions = array();
 		$this->filters = array();
 
-        // Testje
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/nf-postcode-api-public.php';
+
+		// Register AJAX function hook
         add_action( 'wp_ajax_nf_postcode_api_request', array($this, 'request_address' ));
         add_action( 'wp_ajax_nopriv_nf_postcode_api_request', array($this, 'request_address' ));
-
 
 	}
 
 
-
-    /**
-     * Run the core of the plugin. Swekjes.
-     *
-     */
-
     public function request_address () {
-
-        //if ( !check_ajax_referer( 'nf_postcode_api', 'security', false ) ) {
-        //	die();
-        //}
-
+		
+		// Check nonce
+        if ( !check_ajax_referer( 'nf_postcode_api', 'security', false ) ) {
+        	die();
+        }
+		
+		// Define Postcode.nl API credentials
         $key = "huB90MvEPtQPFiviVMgaEAV628QwYOpDTGZLTSg4Dqm";
         $secret = "meJKlgGH8YilTiAqQh5ShtfRZNofjVUAgRwCCk70jI4DNpyBli";
 
+		// Extract POST data from Ninja Forms fields, to validate address data
         extract($_POST);
-
+                
         // Clean postcode to 9999XX format
-        $postcode = preg_replace('/[^a-zA-Z0-9]/', '', $postcode);
+        $postcode = preg_replace('/[^a-zA-Z0-9]/', '', esc_attr($postcode));
 
-        $url = 'https://api.postcode.nl/rest/addresses/' . urlencode($postcode). '/'. urlencode($house_number) . '/'. urlencode($house_number_suffix);
+        $url = 'https://api.postcode.nl/rest/addresses/' . urlencode($postcode). '/'. urlencode(esc_attr($house_number)) . '/'. urlencode(esc_attr($house_number_suffix));
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
