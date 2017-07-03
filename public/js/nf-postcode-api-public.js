@@ -7,6 +7,9 @@
             $('.api-postcode, .api-house_number').on("focusout",  function(){
                 getPostcodeAndNumber();
             });
+            $('.api-postcode, .api-house_number').on("input",  function(){
+                getPostcodeAndNumber();
+            });
             clearInterval(formExists);
         }
     }, 500); // check every 100ms
