@@ -1,11 +1,17 @@
 (function( $ ) {
 
+
     var formExists = setInterval(function() {
         if ($(".nf-form-cont").length) {
 
             // Set your event listeners here, example:
-            $(".api-postcode, .api-house_number").on('focusout',getPostcodeAndNumber);
-            clearInterval(formExists);
+            //$(".api-postcode, .api-house_number").on('focusout',getPostcodeAndNumber);
+            //clearInterval(formExists);
+
+            $('.api-postcode, .api-house_number').blur(function(){
+                getPostcodeAndNumber();
+                clearInterval(formExists);
+            })
         }
     }, 100); // check every 100ms
 
@@ -42,8 +48,8 @@
             dataType:   'json',
             success:	function( data ) {
                 if (!data) {
-                    return;  // nonce check failed
                     console.log('nonce check failed');
+                    return;  // nonce check failed
                 }
 
                 // Debugging
