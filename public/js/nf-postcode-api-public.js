@@ -1,19 +1,15 @@
 (function( $ ) {
 
-
     var formExists = setInterval(function() {
+
         if ($(".nf-form-cont").length) {
 
-            // Set your event listeners here, example:
-            //$(".api-postcode, .api-house_number").on('focusout',getPostcodeAndNumber);
-            //clearInterval(formExists);
-
-            $('.api-postcode, .api-house_number').blur(function(){
+            $('.api-postcode, .api-house_number').on("focusout",  function(){
                 getPostcodeAndNumber();
-                clearInterval(formExists);
-            })
+            });
+            clearInterval(formExists);
         }
-    }, 100); // check every 100ms
+    }, 500); // check every 100ms
 
     function getPostcodeAndNumber() {
 
