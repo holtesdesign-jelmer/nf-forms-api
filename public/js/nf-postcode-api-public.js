@@ -39,60 +39,66 @@
             house_number_suffix: house_number_suffix,
         };
 
-        // Call Postcode API
-        xhr = $.ajax({
-            type:		'POST',
-            url:		nf_ajax_url.ajaxurl+'?action=nf_postcode_api_request',
-            data:		data,
-            dataType:   'json',
-            success:	function( data ) {
-                if (!data) {
-                    console.log('nonce check failed');
-                    return;  // nonce check failed
-                }
-
-                // Debugging
-                console.log(JSON.stringify(data));
-
-                // If address is valid
-                if ( typeof data.street != 'undefined' && typeof data.city != 'undefined') {
-
-                    // Remove error and set fields to validated
-                    $('.postcode-api-error').html( '' );
-
-                    // Fill address fields
-                    $('.api-street_name').val(data.street);
-                    $('.api-city').val(data.city);
-
-                }
-                // If address is not valid
-                else if (typeof data.exceptionId != 'undefined' ) {
-                    // console.log(data);
-                    switch(data.exceptionId) {
-                        case 'PostcodeNl_Controller_Address_PostcodeTooShortException':
-                            $( '.postcode-api-error' ).html( data.exception );
-                            break;
-                        case 'PostcodeNl_Controller_Address_InvalidPostcodeException':
-                            $('.postcode-api-error' ).html( data.exception );
-                            break;
-                        case 'PostcodeNl_Controller_Address_InvalidHouseNumberException':
-                            $('.postcode-api-error' ).html( data.exception );
-                            break;
-                        case 'PostcodeNl_Service_PostcodeAddress_AddressNotFoundException':
-                            $( '.postcode-api-error' ).html( data.exception );
-                            break;
-                        case 'PostcodeNl_Controller_Plugin_HttpBasicAuthentication_NotAuthorizedException':
-                        case 'PostcodeNl_Controller_Plugin_HttpBasicAuthentication_PasswordNotCorrectException':
-                            // API credentials not valid - admin notice?
-                            break;
-                        default:
-                            $('.postcode-api-error' ).html( data.exception );
-                            break;
+        if (postcode.length > 5 && house_number.length > 0 ) {
+            // Call Postcode API
+            xhr = $.ajax({
+                type:		'POST',
+                url:		nf_ajax_url.ajaxurl+'?action=nf_postcode_api_request',
+                data:		data,
+                dataType:   'json',
+                success:	function( data ) {
+                    if (!data) {
+                        console.log('nonce check failed');
+                        return;  // nonce check failed
                     }
-                }
 
-            }
-        });
+                    // Debugging
+                    console.log(JSON.stringify(data));
+
+                    // If address is valid
+                    if ( typeof data.street != 'undefined' && typeof data.city != 'undefined') {
+
+                        // Remove error and set fields to validated
+                        $('.postcode-api-error').html( '' );
+
+                        // Fill address fields
+                        $('.api-street_name').val(data.street);
+                        $('.api-city').val(data.city);
+
+                    }
+                    // If address is not valid
+                    else if (typeof data.exceptionId != 'undefined' ) {
+                        // console.log(data);
+                        switch(data.exceptionId) {
+                            case 'PostcodeNl_Controller_Address_PostcodeTooShortException':
+                                $( '.postcode-api-error' ).html( data.exception );
+                                break;
+                            case 'PostcodeNl_Controller_Address_InvalidPostcodeException':
+                                $('.postcode-api-error' ).html( data.exception );
+                                break;
+                            case 'PostcodeNl_Controller_Address_InvalidHouseNumberException':
+                                $('.postcode-api-error' ).html( data.exception );
+                                break;
+                            case 'PostcodeNl_Service_PostcodeAddress_AddressNotFoundException':
+                                $( '.postcode-api-error' ).html( data.exception );
+                                break;
+                            case 'PostcodeNl_Controller_Plugin_HttpBasicAuthentication_NotAuthorizedException':
+                            case 'PostcodeNl_Controller_Plugin_HttpBasicAuthentication_PasswordNotCorrectException':
+                                // API credentials not valid - admin notice?
+                                break;
+                            default:
+                                $('.postcode-api-error' ).html( data.exception );
+                                break;
+                        }
+                    }
+
+                }
+            });
+        }
+        else {
+            console.log('Postcode te kort of huisnummer niet opgegeven');
+        }
+
     }
 
 })( jQuery );
