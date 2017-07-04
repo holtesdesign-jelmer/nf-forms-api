@@ -4,11 +4,11 @@
 
         if ($(".nf-form-cont").length) {
 
-            $('.api-postcode, .api-house_number').on("focusout",  function(){
+            $('.api-postcode, .api-house_number, .api-suffix' ).on("focusout",  function(){
                 getPostcodeAndNumber();
             });
             $('.api-postcode, .api-house_number').on("input",  function(){
-                getPostcodeAndNumber();
+                //getPostcodeAndNumber();
             });
             clearInterval(formExists);
         }
@@ -26,7 +26,7 @@
         // Init vars
         var postcode = $('.api-postcode').val();
         var house_number = $('.api-house_number').val();
-        var house_number_suffix = "";
+        var house_number_suffix = $('.api-suffix').val();
 
         if ( $('.nf-form-cont').parent().find( '.postcode-api-error' ).length < 1 ) {
             $( '.api-postcode' ).closest( '.nf-field-container' ).before( '<div class="postcode-api-error" style="color: red;"></div>' );
