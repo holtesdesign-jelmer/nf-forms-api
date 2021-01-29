@@ -1,0 +1,71 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2017-03-22 20:56+0000\n"
+"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"PO-Revision-Date: 2021-01-29 10:03+0000\n"
+"X-Generator: Loco https://localise.biz/\n"
+"Project-Id-Version: Ninja Forms - Postcode.nl API\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Webreact\n"
+"Language-Team: Nederlands\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Loco-Version: 2.5.0; wp-5.6"
+
+#: admin/class-nf-forms-postcode-api-admin.php:95
+msgid "API-Gegevens correct, verbinding geslaagd."
+msgstr "API-Gegevens correct, verbinding geslaagd."
+
+#: admin/class-nf-forms-postcode-api-admin.php:91
+msgid "API-Gegevens incorrect, verbinding mislukt."
+msgstr "API-Gegevens incorrect, verbinding mislukt."
+
+#: admin/class-nf-forms-postcode-api-admin.php:81
+#: admin/class-nf-forms-postcode-api-admin.php:216
+msgid "Combination does not exist."
+msgstr "De opgegeven postcode is niet bekend met huisnummer."
+
+#: admin/class-nf-forms-postcode-api-admin.php:83
+#: admin/class-nf-forms-postcode-api-admin.php:218
+msgid "Housenumber must contain numbers only."
+msgstr "Het huisnummer dient alleen nummers te bevatten."
+
+#. Author URI of the plugin
+msgid "https://www.webreact.nl"
+msgstr "https://www.webreact.nl"
+
+#. URI of the plugin
+msgid "https://www.webreact.nl/nf-forms-postcode-api-uri/"
+msgstr "https://www.webreact.nl/"
+
+#: public/class-nf-forms-postcode-api-public.php:88
+msgid "Loading..."
+msgstr "Bezig met ophalen..."
+
+#. Name of the plugin
+msgid "Ninja Forms - Postcode.nl API"
+msgstr "Ninja Forms - Postcode.nl API"
+
+#: admin/class-nf-forms-postcode-api-admin.php:87
+#: admin/class-nf-forms-postcode-api-admin.php:219
+msgid "Postcode does not use format `1234AB`."
+msgstr "Postcode is niet in het formaat '1234AB'."
+
+#: admin/class-nf-forms-postcode-api-admin.php:82
+#: admin/class-nf-forms-postcode-api-admin.php:217
+msgid "Specified postcode is too short."
+msgstr "De ingevulde postcode is te kort."
+
+#. Description of the plugin
+msgid ""
+"This plug-in combines Ninja Forms with Postcode.nl API to auto-fill and "
+"validate address data."
+msgstr ""
+"Deze plug-in combineert Ninja Forms met de Postcode.nl API om automatisch "
+"adressen aan te vullen en te valideren."
+
+#. Author of the plugin
+msgid "Webreact"
+msgstr "Webreact"

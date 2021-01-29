@@ -1,0 +1,62 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2021-01-29 10:02+0000\n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: admin/class-nf-forms-postcode-api-admin.php:95
+msgid "API-Gegevens correct, verbinding geslaagd."
+msgstr ""
+
+#: admin/class-nf-forms-postcode-api-admin.php:91
+msgid "API-Gegevens incorrect, verbinding mislukt."
+msgstr ""
+
+#: admin/class-nf-forms-postcode-api-admin.php:81
+#: admin/class-nf-forms-postcode-api-admin.php:216
+msgid "Combination does not exist."
+msgstr ""
+
+#: admin/class-nf-forms-postcode-api-admin.php:83
+#: admin/class-nf-forms-postcode-api-admin.php:218
+msgid "Housenumber must contain numbers only."
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.webreact.nl"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://www.webreact.nl/nf-forms-postcode-api-uri/"
+msgstr ""
+
+#: public/class-nf-forms-postcode-api-public.php:88
+msgid "Loading..."
+msgstr ""
+
+#. Name of the plugin
+msgid "Ninja Forms - Postcode.nl API"
+msgstr ""
+
+#: admin/class-nf-forms-postcode-api-admin.php:87
+#: admin/class-nf-forms-postcode-api-admin.php:219
+msgid "Postcode does not use format `1234AB`."
+msgstr ""
+
+#: admin/class-nf-forms-postcode-api-admin.php:82
+#: admin/class-nf-forms-postcode-api-admin.php:217
+msgid "Specified postcode is too short."
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"This plug-in combines Ninja Forms with Postcode.nl API to auto-fill and "
+"validate address data."
+msgstr ""
+
+#. Author of the plugin
+msgid "Webreact"
+msgstr ""
