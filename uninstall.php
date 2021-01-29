@@ -19,10 +19,10 @@
  * For more information, see the following discussion:
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
- * @link       https://www.holtesdesign.nl
+ * @link       https://www.webreact.nl
  * @since      1.0.0
  *
- * @package    NF_Postcode_Api
+ * @package    nf_forms_postcode_api
  */
 
 // If uninstall not called from WordPress, then exit.
