@@ -34,8 +34,8 @@
                 data: data,
                 dataType: 'json',
                 beforeSend: function () {
-                    $('.api-street_name').attr("placeholder", placeholder).addClass('loading');
-                    $('.api-city').attr("placeholder", placeholder).addClass('loading');
+                    $('.api-street_name').attr("placeholder", placeholder).addClass('loading').prop("readonly", true);
+                    $('.api-city').attr("placeholder", placeholder).addClass('loading').prop("readonly", true);
                 },
                 success: function (data) {
                     if (!data) {
@@ -43,8 +43,8 @@
                     }
                     if (typeof data.street != 'undefined' && typeof data.city != 'undefined') {
                         $('.postcode-api-error').html('');
-                        $('.api-street_name').val(data.street).prop("readonly", true).removeClass('loading');
-                        $('.api-city').val(data.city).prop("readonly", true).removeClass('loading');
+                        $('.api-street_name').val(data.street).attr("placeholder", '').prop("readonly", false).removeClass('loading');
+                        $('.api-city').val(data.city).attr("placeholder", '').prop("readonly", false).removeClass('loading');
                     } else if (typeof data.exceptionId != 'undefined') {
                         $('.api-street_name').attr("placeholder", '').val('').prop("readonly", false).removeClass('loading');
                         $('.api-city').attr("placeholder", '').val('').prop("readonly", false).removeClass('loading');
