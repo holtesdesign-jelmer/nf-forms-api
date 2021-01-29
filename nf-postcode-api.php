@@ -16,9 +16,9 @@
  * Plugin Name:       Ninja Forms - Postcode.nl API
  * Plugin URI:        https://www.holtesdesign.nl/nf-postcode-api-uri/
  * Description:       This plug-in combines Ninja Forms with Postcode.nl API to auto-fill and validate address data.
- * Version:           5.0.0
- * Author:            Holtes Design
- * Author URI:        https://www.holtesdesign.nl
+ * Version:           5.1.0
+ * Author:            Webreact
+ * Author URI:        https://www.webreact.nl
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       nf-postcode-api
