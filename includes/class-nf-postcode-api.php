@@ -69,7 +69,7 @@ class NF_Postcode_Api {
 	public function __construct() {
 
 		$this->nf_postcode_api = 'nf-postcode-api';
-		$this->version = '1.0.0';
+		$this->version = '5.1.0';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -151,9 +151,13 @@ class NF_Postcode_Api {
 
 		$plugin_admin = new NF_Postcode_Api_Admin( $this->get_nf_postcode_api(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
+		$this->loader->add_filter( 'ninja_forms_plugin_settings_groups', $plugin_admin, 'nf_settings_groups', 10, 1 );
+        $this->loader->add_action( 'wp_ajax_nf_postcode_api_request', $plugin_admin, 'request_address' );
+        $this->loader->add_action( 'wp_ajax_nopriv_nf_postcode_api_request', $plugin_admin, 'request_address' );
+        $this->loader->add_filter( 'ninja_forms_check_setting_nf_api_key', $plugin_admin,  'check_nf_key', 10, 1 );
+        $this->loader->add_filter( 'ninja_forms_check_setting_nf_api_secret', $plugin_admin,  'check_nf_secret', 10, 1 );
+        $this->loader->add_filter( 'ninja_forms_check_setting_nf_webreact_license', $plugin_admin,  'check_nf_license', 10, 1 );
+        $this->loader->add_filter( 'ninja_forms_plugin_settings', $plugin_admin, 'plugin_settings', 10, 1 );
 	}
 
 	/**
@@ -167,8 +171,7 @@ class NF_Postcode_Api {
 
 		$plugin_public = new NF_Postcode_Api_Public( $this->get_nf_postcode_api(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts', 1000 );
 
 	}
 

@@ -52,57 +52,7 @@ class NF_Postcode_Api_Loader {
 		$this->actions = array();
 		$this->filters = array();
 
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/nf-postcode-api-public.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/nf-postcode-api-admin.php';
-
-        add_action( 'wp_ajax_nf_postcode_api_request', array($this, 'request_address' ));
-        add_action( 'wp_ajax_nopriv_nf_postcode_api_request', array($this, 'request_address' ));
-
 	}
-
-
-    public function request_address () {
-		
-        if ( !check_ajax_referer( 'nf_postcode_api', 'security', false ) ) {
-        	die();
-        }
-		
-        $key = Ninja_Forms()->get_setting( 'nf_api_key' );
-        $secret = Ninja_Forms()->get_setting( 'nf_api_secret' );
-
-        extract($_POST);
-                
-        // Clean postcode to 9999XX format
-        $postcode = preg_replace('/[^a-zA-Z0-9]/', '', esc_attr($postcode));
-
-        $url = 'https://api.postcode.nl/rest/addresses/' . urlencode($postcode). '/'. urlencode(esc_attr($house_number)) . '/'. urlencode(esc_attr($house_number_suffix));
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-        curl_setopt($ch, CURLOPT_USERPWD, $key .':'. $secret);
-        $jsonResponse = curl_exec($ch);
-        $curlError = curl_error($ch);
-        curl_close($ch);
-
-        // Translate errors
-        $errors = array(
-            'Combination does not exist.'            => __('Combination does not exist.', 'nf-postcode-api'),
-            'Specified postcode is too short.'       => __('Specified postcode is too short.', 'nf-postcode-api'),
-            'Housenumber must contain numbers only.' => __('Housenumber must contain numbers only.', 'nf-postcode-api'),
-            'Postcode does not use format `1234AB`.' => __('Postcode does not use format `1234AB`.', 'nf-postcode-api'),
-        );
-
-        foreach ($errors as $string => $translation) {
-            $jsonResponse = str_replace($string, $translation, $jsonResponse);
-        }
-
-        echo $jsonResponse;
-
-        die();
-    }
-
 
     /**
 	 * Add a new action to the collection to be registered with WordPress.
