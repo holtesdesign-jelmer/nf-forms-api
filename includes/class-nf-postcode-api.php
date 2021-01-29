@@ -69,7 +69,7 @@ class NF_Postcode_Api {
 	public function __construct() {
 
 		$this->nf_postcode_api = 'nf-postcode-api';
-		$this->version = '1.0.0';
+		$this->version = '5.1.0';
 
 		$this->load_dependencies();
 		$this->set_locale();
